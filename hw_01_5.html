@@ -1,0 +1,21 @@
+<meta charset="UTF-8">
+<script>
+
+    let ticketNumber = prompt('Введите номер вашего билета');
+    let firstPart = Math.floor(ticketNumber / 1000);
+    let lastPart = ticketNumber % 1000;
+
+    function sumPart(ticketPart) {
+        let partSum = 0;
+        for (i = 0; i < 3; i++) {
+            partSum += ticketPart % 10;
+            ticketPart = Math.floor(ticketPart / 10);
+        }
+        return partSum;
+    }
+
+    if (sumPart(firstPart) === sumPart(lastPart))
+        alert('СЕКТОР ПРИЗЗЗЗЗЗ НА БАРАБАНЕ!!!');
+    else
+        alert('С ВАШИМ БИЛЕТОМ НЕ ПОВЕЗЛО ((');
+</script>
