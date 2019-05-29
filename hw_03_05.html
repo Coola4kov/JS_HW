@@ -1,0 +1,29 @@
+<meta charset="UTF-8">
+<script>
+    "use strict";
+
+    const arr = [
+        [2, 4, 6],
+        [1, 5, 10],
+        [7, 4, 1],
+    ];
+
+    function sum(total, num) {
+        return total + num
+    }
+
+    let maximum = 0;
+    let maxArrayInd = [];
+    for (let ind in arr) {
+        let arraySum = arr[ind].reduce(sum);
+        if (arraySum > maximum) {
+            maximum = arraySum;
+            maxArrayInd = ind;
+        }
+    }
+
+    let minimumValue = Math.min(...arr[maxArrayInd]);
+    console.log(`Индекс массива с максимальным значением суммы всех числе ${maxArrayInd}`);
+    console.log(`Минимальное значение в массиве с максимальным значение равно ${minimumValue}`)
+</script>
+

@@ -1,0 +1,32 @@
+<meta charset="UTF-8">
+<script>
+    "use strict";
+
+    let simpleNumbers = [];
+    let i = 1;
+
+    function simpleCheck(number, array) {
+        let check = 0;
+        let result = true;
+        if (array.length > 0) {
+            for (let value of array) {
+                if (number % value === 0) {
+                    check++;
+                    if (check > 1) {
+                        result = false;
+                        break;
+                    }
+                }
+            }
+        }
+        return result;
+    }
+
+    while (i <= 100) {
+        if (simpleCheck(i, simpleNumbers)) simpleNumbers.push(i);
+        i++;
+    }
+    console.log(simpleNumbers)
+
+</script>
+
