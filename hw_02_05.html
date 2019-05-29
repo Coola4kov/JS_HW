@@ -1,0 +1,43 @@
+<meta charset="UTF-8">
+<script>
+    "use strict";
+
+    // function summ(x, y) {
+    //     return x + y;
+    // }
+    //
+    // function sub(x, y) {
+    //     return x - y;
+    // }
+    //
+    // function div(x, y) {
+    //     return x / y;
+    // }
+    //
+    // function mul(x, y) {
+    //     return x * y;
+    // }
+
+    function mathOperation(arg1, arg2, operation) {
+        switch (operation) {
+            case 'summ':
+                return arg1 + arg2;
+            case 'sub':
+                return arg1 - arg2;
+            case 'div':
+                return arg1 / arg2;
+            case 'mul':
+                return arg1 * arg2;
+            default:
+                return 'Wrong operation';
+        }
+    }
+
+    console.log(mathOperation(10, 20, 'summ'));
+    console.log(mathOperation(10, 20, 'sub'));
+    console.log(mathOperation(10, 20, 'div'));
+    console.log(mathOperation(10, 20, 'mul'));
+    console.log(mathOperation(10, 20, 'foo'));
+
+</script>
+

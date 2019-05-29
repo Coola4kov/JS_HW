@@ -1,0 +1,18 @@
+<meta charset="UTF-8">
+<script>
+    "use strict";
+
+    let value = prompt('Введите сумму, что вы хотите положить в банк');
+    let ending = value % 100;
+    let name;
+    if (ending > 9 && ending < 20) name = 'рублей';
+    else {
+        ending %= 10;
+        if (ending === 1) name = 'рубль';
+        else if (ending >= 2 && ending <= 4) name = 'рубля';
+        else name = 'рублей';
+    }
+    alert(`Ваша сумма ${value} ${name} успешно зачислена.`)
+
+</script>
+
