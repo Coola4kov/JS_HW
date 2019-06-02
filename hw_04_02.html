@@ -1,0 +1,118 @@
+<meta charset="UTF-8">
+<script>
+    "use strict";
+
+    const settings = {
+        rowsCount: 10,
+        colsCount: 10,
+        startPositionX: 0,
+        startPositionY: 0
+    };
+
+    const player = {
+        x: null,
+        y: null,
+        settings: null,
+
+        init(gameSettings) {
+            this.x = gameSettings.startPositionX;
+            this.y = gameSettings.startPositionY;
+            this.settings = gameSettings;
+        },
+
+        relocate(x, y) {
+            if (x === '+' && this.x + 1 < this.settings.colsCount) {
+                this.x++;
+            } else if (x === '-' && this.x - 1 >= 0) {
+                this.x--;
+            }
+
+            if (y === '+' && this.y + 1 < this.settings.rowsCount) {
+                this.y++;
+            } else if (y === '-' && this.y - 1 >= 0) {
+                this.y--;
+            }
+        },
+
+        move(direction) {
+            switch (direction) {
+                case 2:
+                    this.relocate('', '+');
+                    break;
+                case 4:
+                    this.relocate('-', '');
+                    break;
+                case 6:
+                    this.relocate('+', '');
+                    break;
+                case 8:
+                    this.relocate('', '-');
+                    break;
+                case 1:
+                    this.relocate('-', '+');
+                    break;
+                case 3:
+                    this.relocate('+', '+');
+                    break;
+                case 7:
+                    this.relocate('-', '-');
+                    break;
+                case 9:
+                    this.relocate('+', '-');
+                    break;
+            }
+        }
+    };
+
+    const game = {
+        settings,
+        player,
+        run() {
+            this.player.init(this.settings);
+            while (true) {
+                this.render();
+                const direction = this.getDirection();
+                if (direction === -1) {
+                    alert('GOOD BYE!!!');
+                    return;
+                }
+                this.player.move(direction);
+            }
+
+        },
+        render() {
+            console.clear();
+            let map = '';
+            for (let row = 0; row < this.settings.rowsCount; row++) {
+                for (let col = 0; col < this.settings.colsCount; col++) {
+                    if (this.player.x === col && this.player.y === row) {
+                        map += '0 ';
+                    } else {
+                        map += 'x ';
+                    }
+                }
+                map += '\n';
+            }
+            console.log(map);
+        },
+
+        getDirection() {
+            const availableDirection = [-1, 1, 2, 3, 4, 6, 7, 8, 9];
+
+            while (true) {
+                const direction = parseInt(prompt('введите число, куда вы хотите переместится; -1 для выхода'));
+
+                if (!availableDirection.includes(direction)) {
+                    alert(`Для перемещения необходимо ввести одно из следующих значений ${direction}`);
+                    continue;
+                }
+
+                return direction;
+            }
+
+        }
+    };
+
+    game.run();
+</script>
+

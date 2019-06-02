@@ -1,0 +1,42 @@
+<meta charset="UTF-8">
+<script>
+    "use strict";
+
+    function convert(number) {
+        let detailedNumber = {
+            firstDigit: 0,
+            secondDigit: 0,
+            thirdDigit: 0
+        };
+        let result = {};
+        let msg;
+        number = Number(number);
+        if (!isNaN(number)) {
+            if (Number.isInteger(number)) {
+                if (number >= 0 && number <= 999) {
+                    for (let prop in detailedNumber) {
+                        let lastDigit = number % 10;
+                        number = (number - lastDigit) / 10;
+                        detailedNumber[prop] = lastDigit;
+                    }
+                    result = detailedNumber;
+                } else {
+                    msg = `Number ${number} is out of the appropriate range [0 - 999]`;
+                }
+            }
+            else {
+                msg = `Number ${number} is not an Integer`;
+            }
+        }
+        else {
+            msg = `Passed value ${number} is not a number`;
+        }
+        if (msg) {
+            console.log(msg);
+        }
+        return result;
+    }
+
+    console.log(convert(prompt('Enter the number between 0 - 999')));
+</script>
+

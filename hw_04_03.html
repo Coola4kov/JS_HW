@@ -1,0 +1,105 @@
+<meta charset="UTF-8">
+<script>
+    "use strict";
+
+    const letters = ['a', 'b', 'c', 'd'];
+
+    const questions = {
+        q1: {
+            question: 'Скорость света равна...',
+            variants: ['3*10^8', 'Такой скорости не существует', '100500', '123654987654321456987'],
+            answerIndex: 0
+        },
+        q2: {
+            question: 'Сколько рук у шамана?',
+            variants: ['ЧТО?', '2 руки', 'У шамана 3 руки', 'не знаю, но крыло точно есть'],
+            answerIndex: 2
+        },
+        q3: {
+            question: 'Сколько лет можно учиться в GBU',
+            variants: ['Много', 'Можно не учиться', 'Что такое GBU', 'Никто не знает...'],
+            answerIndex: 3
+        },
+        q4: {
+            question: 'Сколько букв в слове "привет"',
+            variants: ['Пять', 'Шесть', 'Семь', 'Да что здесь творится?'],
+            answerIndex: 1
+        },
+        q5: {
+            question: 'Вам нравится программировать?',
+            variants: ['Да', 'Не знаю', 'БЕЗУМНО НРАВИТСЯ!!! ХОЧУ ВСЁ ЗНАТЬ', 'Нет'],
+            answerIndex: 2
+        }
+    };
+
+    const player = {
+        totalPoints: 0,
+        init() {
+            this.totalPoints = 0;
+        },
+        checkAnswer(playersAnswerIndex, rightIndex, rightAnswer) {
+            if (playersAnswerIndex === rightIndex) {
+                this.totalPoints++;
+                alert('Это правильный ответ!');
+            } else {
+                alert(`Правильный ответ ${rightAnswer}`);
+            }
+        }
+
+    };
+
+    const game = {
+        player,
+        questions,
+        letters,
+        run() {
+            while (true) {
+                this.player.init();
+                for (const q in this.questions) {
+                    console.clear();
+                    console.log(this.questions[q].question);
+                    for (let i = 0; i < this.letters.length; i++) {
+                        console.log(`${this.letters[i]}. ${this.questions[q].variants[i]}`);
+                    }
+                    let answer = this.getResponse('game');
+                    if (answer === 'q') {
+                        return alert('Спасибо за игру, возвращайтесь ещё');
+                    }
+                    this.player.checkAnswer(this.letters.indexOf(answer),
+                        this.questions[q].answerIndex,
+                        this.questions[q].variants[this.questions[q].answerIndex])
+                }
+                alert(`По результатам игры вы набрали ${this.player.totalPoints} очков`);
+                if (this.getResponse('exit') === 'N') {
+                    return alert('Спасибо за игру, возвращаётесь ешё');
+                }
+                alert('Продолжаем играть')
+            }
+        },
+
+        getResponse(mode) {
+            if (mode === 'game') {
+                while (true) {
+                    let answer = prompt('Ваш вариат ответа:');
+                    if (this.letters.includes(answer) || answer === 'q') {
+                        return answer;
+                    }
+                    alert(`Ответ должен содержать один из следующих символов: ${this.letters}\n
+                           Если вы хотите выйти, введите q`)
+                }
+            } else {
+                while (true) {
+                    let answer = prompt('Вы хотите продолжать играть? Y или N');
+                    if (answer === 'Y' || answer === 'N') {
+                        return answer;
+                    }
+                        alert('Ответ должен быть Y или N, другого не дано :/');
+                }
+            }
+
+        }
+    };
+
+    game.run();
+</script>
+
