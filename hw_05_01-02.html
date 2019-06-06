@@ -2,9 +2,6 @@
 <script>
     "use strict";
 
-    const head = document.head;
-
-
     let topLetters = document.createElement('style');
     let divTopLetters = document.createElement('div');
     let topLetter = document.createElement('style');
@@ -100,7 +97,6 @@
                     case 4:
                         tmp.innerHTML = '<i class="fas fa-chess-king fa-3x"></i>';
                         break;
-
                 }
             }
             divBoard.append(tmp);
@@ -119,7 +115,6 @@
         link.rel = 'stylesheet';
         link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.css';
         head.appendChild(link);
-
         body.appendChild(divTopLetters);
         body.appendChild(divUnderLetters);
     };
