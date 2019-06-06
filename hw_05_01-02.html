@@ -1,0 +1,133 @@
+<html>
+<script>
+    "use strict";
+
+    const head = document.head;
+
+
+    let topLetters = document.createElement('style');
+    let divTopLetters = document.createElement('div');
+    let topLetter = document.createElement('style');
+    let divTopLetter = document.createElement('div');
+    let startSpace = document.createElement('style');
+    let divStartSpace = document.createElement('div');
+    let number = document.createElement('style');
+    let divNumber = document.createElement('div');
+    let brownSq = document.createElement('style');
+    let divBrownSq = document.createElement('div');
+    let whiteSq = document.createElement('style');
+    let divWhiteSq = document.createElement('div');
+    let board = document.createElement('style');
+    let divBoard = document.createElement('div');
+    let numberPlace = document.createElement('style');
+    let divNumberPlace = document.createElement('div');
+    let underLetters = document.createElement('style');
+    let divUnderLetters = document.createElement('div');
+
+    const classesInUse = [topLetters, topLetter, startSpace, number,
+        brownSq, whiteSq, board, numberPlace, underLetters];
+
+    startSpace.innerHTML = '.startSpace { ' +
+        'width:20px; height:20px; float:left; text-align: center }';
+    topLetter.innerHTML = '.topLetter {' +
+        'width:50px; height:20px;' +
+        ' float:left; text-align: center }';
+    topLetters.innerHTML =
+        '.topLetters {' +
+        'width:420px; height:20px; }';
+    number.innerHTML = '.number {width:20px; height:50px; float:left; text-align: center;}';
+    brownSq.innerHTML = '.brownSq {background:brown; width:50px; height:50px; float:left; text-align: center;}';
+    whiteSq.innerHTML = '.whiteSq {background:white; width:50px; height:50px; float:left; text-align: center;}';
+    board.innerHTML = '.board {width:400px; height:400px;}';
+    numberPlace.innerHTML = '.numberPlace {width:20px; height:400px}';
+    underLetters.innerHTML = '.underLetters {display: flex; flex-direction: row;}';
+
+    divTopLetters.className = 'TopLetters';
+    divTopLetter.className = 'TopLetter';
+    divNumber.className = 'number';
+    divStartSpace.className = 'StartSpace';
+    divBrownSq.className = 'brownSq';
+    divWhiteSq.className = 'whiteSq';
+    divBoard.className = 'board';
+    divNumberPlace.className = 'NumberPlace';
+    divUnderLetters.className = 'UnderLetters';
+
+    divTopLetters.appendChild(divStartSpace);
+
+    for (let charIndex = 65; charIndex <= 72; ++charIndex) {
+        let tmp = divTopLetter.cloneNode(true);
+        tmp.innerText = String.fromCharCode(charIndex);
+        divTopLetters.appendChild(tmp);
+    }
+
+    for (let number = 1; number <= 8; ++number) {
+        let tmp = divNumber.cloneNode(true);
+        tmp.innerText = number;
+        divNumberPlace.appendChild(tmp);
+    }
+
+    for (let i = 0; i < 8; ++i) {
+        for (let j = 0; j < 8; ++j) {
+            let tmp = divWhiteSq.cloneNode(true);
+            if ((i + j) % 2 === 0) {
+                tmp = divBrownSq.cloneNode(true);
+            }
+            if (i === 1 || i === 6) {
+                tmp.innerHTML = '<i class="fas fa-chess-pawn fa-3x"></i>'
+            } else if (i === 0 || i === 7) {
+                switch (j) {
+                    case 0:
+                        tmp.innerHTML = '<i class="fas fa-chess-rook fa-3x"></i>';
+                        break;
+                    case 7:
+                        tmp.innerHTML = '<i class="fas fa-chess-rook fa-3x"></i>';
+                        break;
+                    case 1:
+                        tmp.innerHTML = '<i class="fas fa-chess-bishop fa-3x"></i>';
+                        break;
+                    case 6:
+                        tmp.innerHTML = '<i class="fas fa-chess-bishop fa-3x"></i>';
+                        break;
+                    case 2:
+                        tmp.innerHTML = '<i class="fas fa-chess-knight fa-3x"></i>';
+                        break;
+                    case 5:
+                        tmp.innerHTML = '<i class="fas fa-chess-knight fa-3x"></i>';
+                        break;
+                    case 3:
+                        tmp.innerHTML = '<i class="fas fa-chess-queen fa-3x"></i>';
+                        break;
+                    case 4:
+                        tmp.innerHTML = '<i class="fas fa-chess-king fa-3x"></i>';
+                        break;
+
+                }
+            }
+            divBoard.append(tmp);
+        }
+    }
+
+    divUnderLetters.appendChild(divNumberPlace);
+    divUnderLetters.appendChild(divBoard);
+    window.onload = function () {
+        let head = document.head;
+        let body = document.body;
+        let link = document.createElement('link');
+        for (let oneClass of classesInUse) {
+            head.appendChild(oneClass);
+        }
+        link.rel = 'stylesheet';
+        link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.css';
+        head.appendChild(link);
+
+        body.appendChild(divTopLetters);
+        body.appendChild(divUnderLetters);
+    };
+</script>
+
+<head>
+    <title>CHESS BOARD</title>
+</head>
+<body>
+</body>
+</html>
